@@ -16,12 +16,17 @@ def calculate_fare(distance,ride_type,hour):
     return total
     
     
-distance=int(input("Enter distance raveled: "))
-ride_type=input("enetr the type of Ride: ")
-hour=int(input("Enter the time of the  day in 24 hours formaat: "))
-try:
-    ride_estimate=calculate_fare(distance,ride_type,hour)
-except WrongTypeError as e:
-    print(f"Error: {e}")
-else:
-    print(f"ride charges: {ride_estimate} ")
+if __name__ == '__main__':
+    try:
+
+        distance = int(input("Enter distance traveled: "))
+        ride_type = input("Enter the type of Ride: ").strip()
+        hour = int(input("Enter the time of day (24-hour format): "))
+        
+        ride_estimate = calculate_fare(distance, ride_type, hour)
+        print(f"Ride charges: {ride_estimate}")
+        
+    except ValueError:
+        print("Input Error: Distance and hours must be numeric values.")
+    except WrongTypeError as e:
+        print(f"Business Policy Exception: {e}")
